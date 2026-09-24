@@ -1,7 +1,8 @@
 function authenticateUser(username, password) {
-    console.log("Validating basic credentials...");
+    console.log("Running secure token-based authentication...");
     if (username === "admin" && password === "1234") {
-        return "Login successful";
+        const token = Buffer.from(`${username}:${password}`).toString('base64');
+        return { authenticated: true, token: token };
     }
-    return "Login failed";
+    return { authenticated: false, token: null };
 }
